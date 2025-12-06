@@ -1,0 +1,363 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Minimal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 dark:bg-zinc-800 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400 dark:bg-zinc-700;
+}
+
+/* Hide scrollbar utility */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
+/* Autofill High Contrast Fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: black !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover, 
+.dark input:-webkit-autofill:focus, 
+.dark input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px black inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/* Custom Animation Utilities */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Reverse Fade In (Slide Down) */
+@keyframes reverseFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-reverse-fade-in {
+  animation: reverseFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Slide Up Fade In (Slide Up) */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up-fade {
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Looping Reverse Fade In */
+@keyframes reverseFadeInLoop {
+  0% { opacity: 0; transform: translateY(-20px); }
+  15% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+.animate-reverse-fade-in-loop {
+  animation: reverseFadeInLoop 5s ease-in-out infinite;
+}
+
+/* Shimmer Effect for AI Buttons */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+/* Subtle Grid Background */
+.bg-grid-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+}
+
+/* AI Robot Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+.animate-wiggle {
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(5deg); }
+}
+.animate-wave {
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes high-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+.animate-high-wave {
+  animation: high-wave 0.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 48%, 52%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); }
+}
+.animate-blink {
+  animation: blink 3s infinite;
+}
+
+/* Robot Walking Sequence & Entrance (3D) */
+/* Updated to sit ON TOP of the card */
+@keyframes robot-land {
+  0% {
+    /* Start: Bottom Right/Behind */
+    opacity: 0;
+    transform: translate3d(200px, 150px, -100px) scale(0.6) rotate(-10deg);
+  }
+  60% {
+    /* Peak: Arcing over */
+    opacity: 1;
+    transform: translate3d(10px, -130px, 50px) scale(1.1) rotate(5deg);
+  }
+  100% {
+    /* Land: Sitting on Top Edge of Card */
+    /* Adjusted to -85px to be slightly less high */
+    transform: translate3d(20px, -85px, 30px) scale(1) rotate(0deg);
+  }
+}
+
+.animate-robot-land {
+  animation: robot-land 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  transform-style: preserve-3d;
+}
+
+@keyframes leg-walk {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-leg-walk {
+  animation: leg-walk 0.15s ease-in-out 14; /* Fast steps */
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+@keyframes pop-in-delayed {
+  0%, 85% { opacity: 0; transform: scale(0) rotate(20deg) translate(-20px, 10px); }
+  90% { opacity: 1; transform: scale(1.1) rotate(-5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.animate-pop-delay {
+  opacity: 0;
+  animation: pop-in-delayed 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* NEW EMOTIONAL ANIMATIONS */
+
+@keyframes point-at-form {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(25deg) translateY(5px); } /* Point down sharply */
+}
+.animate-point {
+  animation: point-at-form 2s ease-in-out infinite;
+  animation-delay: 2.2s; /* Start pointing after landing */
+}
+
+@keyframes look-down {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(0px, 12px); } /* Look straight down at inputs */
+}
+.animate-look-down {
+  animation: look-down 3s ease-in-out infinite;
+  animation-delay: 2.2s;
+}
+
+@keyframes eyebrows-raise {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.animate-eyebrows {
+  animation: eyebrows-raise 2s ease-in-out infinite;
+}
+
+@keyframes praise {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.animate-praise {
+  animation: praise 2s ease-in-out infinite;
+}
+
+/* Typewriter Animation */
+.animate-typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid currentColor; /* The cursor */
+  width: 0;
+  animation: 
+    typing 2s steps(20, end) forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: currentColor }
+}
+
+/* Looping Typewriter for Headline "App & Website" (~13 chars) */
+.animate-typewriter-loop {
+    display: inline-flex;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 4px solid #a855f7; /* Purple 500 cursor */
+    width: 0;
+    max-width: fit-content;
+    vertical-align: bottom;
+    animation: typing-loop 4.5s steps(13, end) infinite;
+}
+
+@keyframes typing-loop {
+    0% { width: 0; }
+    20% { width: 0; }
+    50% { width: 100%; } /* Type out */
+    80% { width: 100%; border-right-color: transparent; } /* Pause and blink out */
+    81% { border-right-color: #a855f7; }
+    90% { width: 0; } /* Erase fast */
+    100% { width: 0; }
+}
+
+/* Zoom In Out (Breathing) Animation */
+@keyframes zoom-in-out {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+.animate-zoom-in-out {
+  animation: zoom-in-out 3s ease-in-out infinite;
+}
+/* Trigger zoom-in-out on group hover */
+.group:hover .animate-zoom-in-out-on-hover {
+  animation: zoom-in-out 3s ease-in-out infinite;
+}
+
+/* Complete / Click Animation (Spin + Pop) */
+@keyframes complete-spin {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+.animate-complete {
+  animation: complete-spin 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Subtle Bounce In Container */
+@keyframes bounce-in-subtle {
+    0% { opacity: 0; transform: scale(0.97); }
+    60% { opacity: 1; transform: scale(1.005); }
+    100% { opacity: 1; transform: scale(1); }
+}
+.animate-bounce-in-subtle {
+    animation: bounce-in-subtle 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Card Hover Shadow Animation */
+.card-hover-effect {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.group:hover .card-hover-effect,
+.card-hover-effect:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+}
+.dark .group:hover .card-hover-effect,
+.dark .card-hover-effect:hover {
+    box-shadow: 0 20px 30px -10px rgba(255, 255, 255, 0.05);
+}
+
+/* Slider Section Animations */
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
